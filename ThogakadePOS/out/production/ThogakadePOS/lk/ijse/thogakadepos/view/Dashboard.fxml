@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="550.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.thogakadepos.controller.DashboardController">
+    <children>
+        <Label alignment="CENTER" layoutX="322.0" layoutY="105.0" prefHeight="27.0" prefWidth="138.0" style="-fx-font-weight: bold;" text="Thogakade POS">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+      <JFXButton fx:id="btnCustomers" layoutX="56.0" layoutY="243.0" onAction="#CustomersOnAction" prefHeight="91.0" prefWidth="204.0" style="-fx-background-color: #5900ff;" text="Customers" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnItems" layoutX="290.0" layoutY="243.0" onAction="#ItemsOnAction" prefHeight="91.0" prefWidth="204.0" style="-fx-background-color: #9e0086;" text="Items" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnPlaceOrder" layoutX="523.0" layoutY="243.0" onAction="#PlaceOrderOnAction" prefHeight="91.0" prefWidth="204.0" style="-fx-background-color: #9e3500;" text="Place Order" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+    </children>
+
+</AnchorPane>

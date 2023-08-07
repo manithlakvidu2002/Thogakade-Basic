@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.thogakadepos.controller.OrderFormController">
+   <children>
+      <Text layoutX="39.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID" wrappingWidth="65.13671875" />
+      <Text layoutX="36.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID" wrappingWidth="71.13671875" />
+      <Text layoutX="39.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price" wrappingWidth="65.13671875" />
+      <Text layoutX="312.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty" wrappingWidth="65.13671875" />
+      <Text layoutX="300.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Code" wrappingWidth="65.13671875" />
+      <TextField fx:id="txtOrder" layoutX="123.0" layoutY="62.0" />
+      <TextField fx:id="txtCustomer" layoutX="123.0" layoutY="105.0" />
+      <TextField fx:id="txtPrice" layoutX="123.0" layoutY="146.0" />
+      <TextField fx:id="txtQty" layoutX="403.0" layoutY="103.0" />
+      <TextField fx:id="txtItem" layoutX="403.0" layoutY="60.0" />
+      <Button layoutX="374.0" layoutY="188.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: d65757;" text="Add" textFill="WHITE" />
+      <Button layoutX="531.0" layoutY="188.0" mnemonicParsing="false" onAction="#btnClearOnAction" style="-fx-background-color: #26b4fb;" text="Clear" textFill="#fcfcfc" />
+      <Button layoutX="439.0" layoutY="188.0" mnemonicParsing="false" onAction="#btnSaveOnAction" style="-fx-background-color: #1639ff;" text="Place Older" textFill="WHITE" />
+      <Button layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#BackOnAction" style="-fx-background-color: #1639ff;" text="Back" textFill="WHITE" />
+      <TableView fx:id="tblOrder" layoutX="12.0" layoutY="235.0" prefHeight="143.0" prefWidth="577.0" style="-fx-background-color: #ebf2ed;">
+         <columns>
+            <TableColumn fx:id="tblOrderId" prefWidth="97.0" text="Order ID" />
+            <TableColumn fx:id="tblCusId" minWidth="2.0" prefWidth="95.0" text="Customer ID" />
+            <TableColumn fx:id="tblItemcode" minWidth="2.0" prefWidth="111.0" text="Item Code" />
+            <TableColumn fx:id="tblqty" minWidth="2.0" prefWidth="74.0" text="Qty" />
+            <TableColumn fx:id="tblUnitPrice" minWidth="0.0" prefWidth="95.0" text="Unit Price" />
+            <TableColumn fx:id="tblUnitPrice1" minWidth="2.0" prefWidth="104.0" text="Delete" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
