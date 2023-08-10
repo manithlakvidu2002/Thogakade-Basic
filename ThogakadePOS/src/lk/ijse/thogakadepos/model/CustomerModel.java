@@ -60,24 +60,5 @@ public class CustomerModel {
         }
     }
 
-    public static ArrayList<Customer> getAll() {
-        Session session = SessionFactoryConfiguration.getInstance().getSession();
 
-        Query query = session.createNativeQuery("SELECT * FROM Customer ORDER BY id;");
-        query.setResultTransformer(Transformers.aliasToBean(Customer.class));
-
-        ArrayList<Customer> customersData = (ArrayList<Customer>) query.getResultList();
-        return customersData;
-    }
-
-
-    public static ArrayList<Customer> loadCustomerIds() {
-        Session session = SessionFactoryConfiguration.getInstance().getSession();
-
-        Query query = session.createNativeQuery("SELECT id FROM Customer ORDER BY id;");
-        query.setResultTransformer(Transformers.aliasToBean(Customer.class));
-
-        ArrayList<Customer> customersData = (ArrayList<Customer>) query.getResultList();
-        return customersData;
-    }
 }

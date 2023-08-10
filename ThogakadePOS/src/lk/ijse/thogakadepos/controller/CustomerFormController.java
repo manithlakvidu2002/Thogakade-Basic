@@ -21,20 +21,6 @@ import java.util.ArrayList;
 
 public class CustomerFormController {
     public AnchorPane pane;
-    @FXML
-    private JFXTextField txtSearch;
-
-    @FXML
-    private TableView<Customer> tblCustomer;
-
-    @FXML
-    private TableColumn<?, ?> colID;
-
-    @FXML
-    private TableColumn<?, ?> colName;
-
-    @FXML
-    private TableColumn<?, ?> colAddress;
 
     @FXML
     private JFXTextField txtID;
@@ -51,61 +37,12 @@ public class CustomerFormController {
     @FXML
     private JFXButton btnDelete;
 
-    public void initialize() {
-        txtSearch.setText("");
-        btnDelete.setDisable(true);
-
-        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-
-        // get search bar typed text
-        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-            //String newValue passed to loadAll() method
-            loadAll(newValue);
-        });
-
-        // get selected item
-        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                txtID.setText(String.valueOf(newValue.getId()));
-                txtName.setText(newValue.getName());
-                txtAddress.setText(newValue.getAddress());
-
-                btnAdd.setText("UPDATE");
-                btnDelete.setDisable(false);
-            } else {
-                btnAdd.setText("ADD");
-                clearFields();
-            }
-        });
-
-        loadAll("");
-    }
-
     private void clearFields() {
         txtID.clear();
         txtName.clear();
         txtAddress.clear();
     }
 
-    private void loadAll(String value) {
-        ObservableList<Customer> list = FXCollections.observableArrayList();
-
-        try {
-            ArrayList<Customer> customerData = CustomerModel.getAll();
-            for (Customer c : customerData) {
-                if (c.getName().contains(value) || c.getAddress().contains(value) || String.valueOf(c.getId()).contains(value)) {
-                    Customer customer = new Customer(c.getId(), c.getName(), c.getAddress());
-                    list.add(customer);
-                }
-            }
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.toString());
-        }
-
-        tblCustomer.setItems(list);
-    }
 
     @FXML
     public void AddOnAction(ActionEvent event) {
@@ -136,7 +73,7 @@ public class CustomerFormController {
                 }
             }
 
-            loadAll("");
+
 
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.toString()).show();
@@ -160,7 +97,6 @@ public class CustomerFormController {
                 new Alert(Alert.AlertType.ERROR, "Failed").show();
             }
 
-            loadAll("");
 
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.toString()).show();

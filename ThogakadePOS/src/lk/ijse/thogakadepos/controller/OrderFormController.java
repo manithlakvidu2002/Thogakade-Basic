@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import lk.ijse.thogakadepos.embedded.OrderDetails;
 import lk.ijse.thogakadepos.entity.OrderTM;
 import lk.ijse.thogakadepos.entity.Orders;
-import lk.ijse.thogakadepos.model.OrderRepository;
+import lk.ijse.thogakadepos.model.OrderModel;
 import lk.ijse.thogakadepos.util.Navigation;
 import lk.ijse.thogakadepos.util.Routes;
 
@@ -51,7 +51,7 @@ public class OrderFormController {
     @FXML
     private TextField txtOrder;
 
-    private OrderRepository orderRepository;
+    private OrderModel orderModel;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         tblOrder.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("orderId"));
@@ -94,8 +94,8 @@ public class OrderFormController {
             int cusId = Integer.parseInt(txtCustomer.getText());
 
             Orders orders = new Orders(orderId, cusId, orderDetail);
-            orderRepository = new OrderRepository();
-            int saved = orderRepository.saveOrder(orders);
+            orderModel = new OrderModel();
+            int saved = orderModel.saveOrder(orders);
             if (saved > 0) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Order Saved!!").show();
             } else {

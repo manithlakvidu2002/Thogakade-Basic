@@ -21,20 +21,6 @@ import java.util.ArrayList;
 
 public class ItemFormController {
     public AnchorPane pane;
-    @FXML
-    private TableView<Item> tblItem;
-
-    @FXML
-    private TableColumn<?, ?> colCode;
-
-    @FXML
-    private TableColumn<?, ?> colDis;
-
-    @FXML
-    private TableColumn<?, ?> colUnitPrice;
-
-    @FXML
-    private TableColumn<?, ?> colQTY;
 
     @FXML
     private JFXTextField txtCode;
@@ -57,39 +43,6 @@ public class ItemFormController {
     @FXML
     private JFXTextField txtSearch;
 
-    public void initialize() {
-        txtSearch.setText("");
-        btnDelete.setDisable(true);
-
-        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
-        colDis.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-        colQTY.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
-
-        // get search bar typed text
-        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-            //String newValue passed to loadAll() method
-            loadAll(newValue);
-        });
-
-        // get selected item
-        tblItem.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                txtCode.setText(String.valueOf(newValue.getCode()));
-                txtDis.setText(newValue.getDescription());
-                txtPrice.setText(String.valueOf(newValue.getUnitPrice()));
-                txtQty.setText(String.valueOf(newValue.getQtyOnHand()));
-
-                btnAdd.setText("UPDATE");
-                btnDelete.setDisable(false);
-            } else {
-                btnAdd.setText("ADD");
-                clearFields();
-            }
-        });
-
-        loadAll("");
-    }
 
     private void clearFields() {
         txtCode.clear();
@@ -98,23 +51,6 @@ public class ItemFormController {
         txtQty.clear();
     }
 
-    private void loadAll(String value) {
-        ObservableList<Item> list = FXCollections.observableArrayList();
-
-        try {
-            ArrayList<Item> itemData = ItemModel.getAll();
-            for (Item i : itemData) {
-                if (i.getDescription().contains(value) || String.valueOf(i.getQtyOnHand()).contains(value) || String.valueOf(i.getCode()).contains(value) || String.valueOf(i.getUnitPrice()).contains(value)) {
-                    Item item = new Item(i.getCode(), i.getDescription(), i.getUnitPrice(), i.getQtyOnHand());
-                    list.add(item);
-                }
-            }
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.toString());
-        }
-
-        tblItem.setItems(list);
-    }
 
     @FXML
     public void AddOnAction(ActionEvent event) {
@@ -145,7 +81,6 @@ public class ItemFormController {
                 }
             }
 
-            loadAll("");
 
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.toString()).show();
@@ -171,7 +106,7 @@ public class ItemFormController {
                 new Alert(Alert.AlertType.ERROR, "Failed").show();
             }
 
-            loadAll("");
+
 
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.toString()).show();

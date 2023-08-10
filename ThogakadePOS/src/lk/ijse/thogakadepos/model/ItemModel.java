@@ -60,15 +60,7 @@ public class ItemModel {
         }
     }
 
-    public static ArrayList<Item> getAll() {
-        Session session = SessionFactoryConfiguration.getInstance().getSession();
 
-        Query query = session.createNativeQuery("SELECT * FROM item ORDER BY code;");
-        query.setResultTransformer(Transformers.aliasToBean(Item.class));
-
-        ArrayList<Item> itemData = (ArrayList<Item>) query.getResultList();
-        return itemData;
-    }
 
 
 }
