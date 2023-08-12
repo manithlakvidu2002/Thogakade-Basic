@@ -63,15 +63,7 @@ public class CustomerFormController {
                     new Alert(Alert.AlertType.ERROR, "Failed").show();
                 }
             }
-            // UPDATE
-            else if (btnAdd.getText().equals("UPDATE")) {
-                boolean isUpdated = CustomerModel.update(customer);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.INFORMATION, "Updated").show();
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "Failed").show();
-                }
-            }
+
 
 
 
@@ -112,5 +104,25 @@ public class CustomerFormController {
     public void ClearOnAction(ActionEvent actionEvent) {
         clearFields();
         btnAdd.setText("ADD");
+    }
+
+    public void UpdateOnAction(ActionEvent actionEvent) {
+        CustomerModel customerModel=new CustomerModel();
+        Customer customer=findCustomer();
+        boolean isUpdated=customerModel.update(customer);
+
+        if(isUpdated){
+            System.out.println("Customer updated");
+        }else{
+            System.out.println("not updated");
+        }
+    }
+    private Customer findCustomer() {
+        Customer customer=new Customer();
+        customer.setId(Integer.parseInt(txtID.getText()));
+        customer.setName(txtName.getText());
+        customer.setAddress(txtAddress.getText());
+
+        return customer;
     }
 }

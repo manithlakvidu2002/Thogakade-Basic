@@ -71,15 +71,6 @@ public class ItemFormController {
                     new Alert(Alert.AlertType.ERROR, "Failed").show();
                 }
             }
-            // UPDATE
-            else if (btnAdd.getText().equals("UPDATE")) {
-                boolean isUpdated = ItemModel.update(item);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.INFORMATION, "Updated").show();
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "Failed").show();
-                }
-            }
 
 
         } catch (Exception e) {
@@ -122,5 +113,26 @@ public class ItemFormController {
     public void ClearOnAction(ActionEvent actionEvent) {
         clearFields();
         btnAdd.setText("ADD");
+    }
+
+    public void UpdateOnAction(ActionEvent actionEvent) {
+        ItemModel itemModel=new ItemModel();
+        Item item=findItem();
+        boolean isUpdated=itemModel.update(item);
+
+        if(isUpdated){
+            System.out.println("updated");
+        }else{
+            System.out.println("not update");
+        }
+    }
+
+    private Item findItem() {
+        Item item=new Item();
+        item.setCode(Integer.parseInt(txtCode.getText()));
+        item.setDescription(txtDis.getText());
+        item.setQtyOnHand(Integer.parseInt(txtQty.getText()));
+        item.setUnitPrice(Double.parseDouble(txtPrice.getText()));
+        return item;
     }
 }
